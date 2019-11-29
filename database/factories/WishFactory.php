@@ -10,7 +10,7 @@ $factory->define(Wish::class, function (Faker $faker) {
         'user_id' => function () {
             return factory(App\User::class)->create()->id;
         },
-        'name' => $faker->name(),
+        'name' => str_replace("'","",$faker->name),
         'description' => $faker->sentence(),
         'url' => $faker->url(),
         'price' => rand(5,20),
