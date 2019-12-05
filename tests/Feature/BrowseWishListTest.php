@@ -32,4 +32,20 @@ class BrowseWishListTest extends TestCase
         $response->assertSee($wishes[1]->name);
         $response->assertSee($wishes[2]->name);
     }
+
+    /** @test */
+    public function a_guest_can_visit_another_users_profile() {
+        // given we have a user with some wishes
+        $user = factory('App\User')->create();
+        $wishes = factory('App\Wish',5)->create(['user_id'=>$user->id]);
+
+        // when we visit the wishlist for that user
+        $response = $this->get('/wishlist/'.$user->id);
+
+        // we should see the users info and their wishes
+        $response->assertSee($user->name);
+        $response->assertSee($wishes[0]->name);
+        $response->assertSee($wishes[0]->description);
+        $response->assertSee($wishes[0]->price);
+    }
 }

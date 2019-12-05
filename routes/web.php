@@ -12,3 +12,7 @@
 */
 
 Route::get('/','WishListController@index');
+Route::get('/home','WishListController@index');
+Route::get('/wishlist/{user}','WishListController@show');
+
+Auth::routes();

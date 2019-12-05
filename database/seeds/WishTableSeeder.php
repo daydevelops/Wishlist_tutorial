@@ -13,7 +13,6 @@ class WishTableSeeder extends Seeder
     public function run()
     {
         $users = App\User::all()->each(function($user,$key) {
-            echo $user->id;
             // for each user in our database
 
             // special condition for first user
