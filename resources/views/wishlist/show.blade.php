@@ -39,11 +39,11 @@
                 <td>{{$wish->url}}</td>
                 @auth
                     @if ($user->id == auth()->id())
-                        <td><button class="btn btn-sm btn-danger">Delete</button></td>
+                        <td><button class="btn btn-sm btn-danger" onclick="deleteWish({{$wish->id}})">Delete</button></td>
                     @elseif ($wish->purchased_by == auth()->id())
-                        <td><button class='btn btn-sm btn-danger'>Unpurchase</button></td>
+                        <td><button class='btn btn-sm btn-danger' onclick="unpurchaseWish({{$wish->id}})">Unpurchase</button></td>
                     @elseif ($wish->purchased_by == null)
-                        <td><button class='btn btn-sm btn-primary'>Mark as purchased</button></td>
+                        <td><button class='btn btn-sm btn-primary' onclick="purchaseWish({{$wish->id}})">Mark as purchased</button></td>
                     @else 
                         <td>Wish granted already!</td>
                     @endif
@@ -53,4 +53,8 @@
     </tbody>
 </table>
 
+@endsection
+
+@section('js')
+	<script src='{{ asset("js/show.js") }}'></script>
 @endsection
