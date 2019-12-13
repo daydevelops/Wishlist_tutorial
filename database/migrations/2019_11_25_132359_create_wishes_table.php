@@ -19,7 +19,7 @@ class CreateWishesTable extends Migration
             $table->text('name');
             $table->text('description')->nullable();
             $table->text('url')->nullable();
-            $table->double('price');
+            $table->double('price')->nullable();
             $table->integer('desire');
             $table->unsignedInteger('purchased_by')->nullable();
             $table->timestamp('purchased_at')->nullable();

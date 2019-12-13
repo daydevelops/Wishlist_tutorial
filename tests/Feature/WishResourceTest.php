@@ -92,4 +92,25 @@ class WishResourceTest extends TestCase
         $this->assertDatabaseMissing('wishes',['id'=>$wishes[0]->id]);
         $this->assertDatabaseHas('wishes',['id'=>$wishes[1]->id]);
     }
+
+    /** @test */
+    public function a_user_can_create_a_wish() {
+        $this->signIn();
+        $wish = [
+            'name' => 'testing',
+            'description' => 'testing123',
+            'desire' => 2
+        ];
+        $this->post('/wish',$wish);
+        $this->assertDatabaseHas('wishes',[
+            'name' => $wish['name'],
+            'description' => $wish['description']
+        ]);
+    }
+
+    /** @test */
+    public function a_guest_cannot_create_a_wish() {
+		$this->expectException('Illuminate\Auth\AuthenticationException');
+        $this->post('/wish',[]);
+    }
 }

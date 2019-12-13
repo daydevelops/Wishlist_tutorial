@@ -2,10 +2,11 @@
 
 @section('content')
 
-<div class="header">
-    <h3 class="text-center">
+<div class="header d-flex flex-row justify-content-between mb-4">
+    <h2>
         {{$user->name}}
-    </h3>
+    </h2>
+    <a href='/wish/new'><button class="btn btn-primary">New</button></a>
 </div>
 <table class="table table-hover table-bordered">
     <thead>

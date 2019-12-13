@@ -28,7 +28,7 @@ class WishController extends Controller
      */
     public function create()
     {
-        //
+        return view('wishlist.new');
     }
 
     /**
@@ -39,7 +39,20 @@ class WishController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = request()->validate([
+            'name'=>'required|string|min:5|max:100',
+            'description'=>'required|string|min:5|max:200',
+            'desire'=>'required|integer|min:1|max:10',
+            'url'=>'nullable',
+            'price'=>'nullable|numeric'
+        ]);
+
+        $data['purchased_by'] = null;
+        $data['purchased_at'] = null;
+
+        auth()->user()->wishes()->create($data);
+
+        return redirect('/wishlist/'.auth()->id());
     }
 
     /**
