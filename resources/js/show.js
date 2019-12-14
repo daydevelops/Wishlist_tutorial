@@ -33,3 +33,27 @@ window.unpurchaseWish = (wish_id) => {
 		}
 	)
 }
+
+window.friend = (user_id) => {
+    axios.post('/friend/'+user_id)
+	.then(
+		(response) => {
+			window.location.reload();
+		},
+		(error) => {
+			alert(error.response.data.message);
+		}
+	)
+}
+
+window.unfriend = (user_id) => {
+    axios.delete('/friend/'+user_id)
+	.then(
+		(response) => {
+			window.location.reload();
+		},
+		(error) => {
+			alert(error.response.data.message);
+		}
+	)
+}

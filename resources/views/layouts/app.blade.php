@@ -59,6 +59,8 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
                                     <a class="dropdown-item" href="/wishlist/{{auth()->id()}}">My Wishlist</a>
+                                    
+                                    <a class="dropdown-item" href="/friend">My Friends</a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

@@ -6,7 +6,16 @@
     <h2>
         {{$user->name}}
     </h2>
-    <a href='/wish/new'><button class="btn btn-primary">New</button></a>
+
+    @if ($user->id == auth()->id())
+        <a href='/wish/new'><button class="btn btn-primary">New</button></a>
+    @else
+        @if ($user->is_friend)
+            <button class="btn btn-danger" onclick="unfriend({{$user->id}})">Unfriend</button>
+        @else 
+            <button class="btn btn-primary" onclick="friend({{$user->id}})">Friend</button>
+        @endif
+    @endif
 </div>
 <table class="table table-hover table-bordered">
     <thead>

@@ -14,6 +14,10 @@
 Route::get('/','WishListController@index');
 Route::get('/home','WishListController@index');
 Route::get('/wish/new/','WishController@create');
+Route::get('/friend','FriendController@index');
+Route::post('/friend/{user}','FriendController@store');
+Route::delete('/friend/{user}','FriendController@destroy');
+Route::get('/wishlist/search','WishListController@search');
 Route::get('/wishlist/{user}','WishListController@show');
 Route::post('/wish','WishController@store');
 Route::delete('/wish/{wish}','WishController@destroy');

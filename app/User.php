@@ -12,6 +12,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $appends = array('is_friend');
+
     protected static function boot() {
 		parent::boot();
 		static::addGlobalScope('wishes', function ($builder) {
@@ -48,5 +50,38 @@ class User extends Authenticatable
 
     public function wishes() {
         return $this->hasMany(Wish::class);
+    }
+
+    public function friends() {
+        return $this->belongsToMany('App\User','friends','user_id','friend_id');
+    }
+
+    public function getIsFriendAttribute() {
+        return $this->isFriend();
+    }
+
+    public function isFriend() {
+        return auth()->check() && Friend::where([
+            'user_id'=>auth()->id(),
+            'friend_id'=>$this->id
+        ])->exists();
+    }
+
+    public function befriend() {
+        if ( ! $this->isFriend()) {
+            Friend::create([
+                'user_id'=>auth()->id(),
+                'friend_id'=>$this->id
+            ]);
+        }
+    }
+
+    public function unfriend() {
+        if ($this->isFriend()) {
+            Friend::where([
+                'user_id'=>auth()->id(),
+                'friend_id'=>$this->id
+            ])->delete();
+        }
     }
 }

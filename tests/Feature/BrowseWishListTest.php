@@ -48,4 +48,17 @@ class BrowseWishListTest extends TestCase
         $response->assertSee($wishes[0]->description);
         $response->assertSee($wishes[0]->price);
     }
+
+    /** @test */
+    public function a_user_can_search_for_other_users() {
+        $bobert = factory('App\User')->create(['name'=>'bobert']);
+        $robert = factory('App\User')->create(['name'=>'robert']);
+        $alice = factory('App\User')->create(['name'=>'alice']);
+
+        $response = $this->get('/wishlist/search?name=bert');
+
+        $response->assertSee('robert');
+        $response->assertSee('bobert');
+        $response->assertDontSee('alice');
+    }
 }
