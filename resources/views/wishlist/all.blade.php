@@ -11,7 +11,7 @@
     <div class="row">
         @foreach($users as $user)
         <div class="wishlist col-sm-4 col-md-3">
-            <div class="card">
+            <div class="card border-dark mb-1">
                 <div class="card-body">
                     <h5 class="card-title">{{$user->name}}</h5>
                     <ul class="card-text">
