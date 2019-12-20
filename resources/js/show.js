@@ -41,7 +41,9 @@ window.friend = (user_id) => {
 			window.location.reload();
 		},
 		(error) => {
-			alert(error.response.data.message);
+			if (error.response.data.message = "Unauthenticated") {
+				alert ("Please log in first");
+			}
 		}
 	)
 }
