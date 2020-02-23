@@ -99,7 +99,8 @@ class WishResourceTest extends TestCase
         $wish = [
             'name' => 'testing',
             'description' => 'testing123',
-            'desire' => 2
+            'desire' => 2,
+            'is_url' => 0
         ];
         $this->post('/wish',$wish);
         $this->assertDatabaseHas('wishes',[
