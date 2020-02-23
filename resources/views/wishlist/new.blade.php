@@ -74,12 +74,12 @@
         <label for="email" class="col-sm-4 col-form-label text-md-right">Where To Buy</label>
 
         <div class="col-md-6">
-            <input id="url" type="text" class="form-control{{ $errors->has('url') ? ' is-invalid' : '' }}" name="url" value="{{ old('url') }}">
-            <small>URLs are nice</small>
+            <input id="url" type="text" class="form-control{{ $errors->has('where_to_buy') ? ' is-invalid' : '' }}" name="where_to_buy" value="{{ old('where_to_buy') }}">
+            <small>Is this a URL? <input type="checkbox" name="is_url" id="is_url" checked="checked"></small>
 
-            @if ($errors->has('url'))
+            @if ($errors->has('where_to_buy'))
             <span class="invalid-feedback" role="alert">
-                <strong>{{ $errors->first('url') }}</strong>
+                <strong>{{ $errors->first('where_to_buy') }}</strong>
             </span>
             @endif
         </div>

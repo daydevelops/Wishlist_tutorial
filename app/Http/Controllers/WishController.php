@@ -43,10 +43,12 @@ class WishController extends Controller
             'name'=>'required|string|min:5|max:100',
             'description'=>'required|string|min:5|max:200',
             'desire'=>'required|integer|min:1|max:10',
-            'url'=>'nullable',
-            'price'=>'nullable|numeric'
+            'where_to_buy'=>'nullable',
+            'price'=>'nullable|numeric',
+            'is_url'=>'required'
         ]);
-
+        
+        $data['is_url'] = $data['is_url'] == "on";
         $data['purchased_by'] = null;
         $data['purchased_at'] = null;
 

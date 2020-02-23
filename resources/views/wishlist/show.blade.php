@@ -46,7 +46,12 @@
                     <td class="border-dark">{{$wish->description}}</td>
                     <td class="border-dark">{{$wish->desire}}</td>
                     <td class="border-dark">{{$wish->price}}</td>
-                    <td class="border-dark">{{$wish->url}}</td>
+                    @if ($wish->is_url)
+                    <td class="border-dark"><a href="{{$wish->where_to_buy}}">Link</a></td>
+                    @else
+                    <td class="border-dark">{{$wish->where_to_buy}}</td>
+                    @endif
+
                     @auth
                     @if ($user->id == auth()->id())
                     <td class="border-dark"><button class="btn btn-sm btn-danger" onclick="deleteWish({{$wish->id}})">Delete</button></td>
