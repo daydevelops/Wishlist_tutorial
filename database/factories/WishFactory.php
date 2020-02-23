@@ -12,8 +12,9 @@ $factory->define(Wish::class, function (Faker $faker) {
         },
         'name' => str_replace("'","",$faker->name),
         'description' => $faker->sentence(),
-        'url' => $faker->url(),
+        'where_to_buy' => $faker->url(),
         'price' => rand(5,20),
-        'desire' => rand(1,10)
+        'desire' => rand(1,10),
+        'is_url'=>0
     ];
 });
